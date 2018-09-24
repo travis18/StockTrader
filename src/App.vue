@@ -10,14 +10,16 @@
 </template>
 
 <script>
-    import Header from "./components/Header.vue"
-    export default {
-        components: {
-            appHeader: Header
-        }
-    }
+import Header from "./components/Header.vue";
+export default {
+  components: {
+    appHeader: Header
+  }
+};
 </script>
 
 <style>
-    body { padding: 30pxc;}
+body {
+  padding: 30px;
+}
 </style>

@@ -4,8 +4,8 @@
       <div class="panel-heading">
         <div class="panel-title">
           <h3>
-              NAME
-            <small>(Price: PRICE)</small>
+              {{stock.name}}
+            <small>(Price: {{stock.price}})</small>
           </h3>
         </div>
       </div>
@@ -14,12 +14,42 @@
           <input 
                   type="number"
                   class="form-control"
-                  placeholder="Quantity">
+                  placeholder="Quantity"
+                  v-model = "quantity" />
         </div>
         <div class="pull-right">
-          <button class="btn btn-success">Buy</button>
+          <button class="btn btn-success" :class="classIsBuyable">Buy</button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["stock"],
+  data() {
+    return {
+      quantity: 0
+    };
+  },
+  computed: {
+    classIsBuyable() {
+      if (this.quantity > 0 && Number.isInteger(Number(this.quantity))) {
+        return { disabled: false };
+      }
+      return { disabled: true };
+    }
+  },
+  method: {
+    buyStock() {
+      var order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      };
+      this.quantity = 0;
+    }
+  }
+};
+</script>
