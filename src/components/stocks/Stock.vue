@@ -18,7 +18,7 @@
                   v-model = "quantity" />
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" :class="classIsBuyable">Buy</button>
+          <button class="btn btn-success" :disabled="isBuyable">Buy</button>
         </div>
       </div>
     </div>
@@ -34,11 +34,11 @@ export default {
     };
   },
   computed: {
-    classIsBuyable() {
+    isBuyable() {
       if (this.quantity > 0 && Number.isInteger(Number(this.quantity))) {
-        return { disabled: false };
+        return false;
       }
-      return { disabled: true };
+      return true;
     }
   },
   method: {
